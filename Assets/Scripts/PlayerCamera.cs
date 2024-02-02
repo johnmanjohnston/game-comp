@@ -15,6 +15,13 @@ public class PlayerCamera : MonoBehaviour
     private void Update()
     {
         Vector3 targetPosition = player.transform.position + offset;
+
+        targetPosition = new Vector3(
+            Mathf.RoundToInt(targetPosition.x),
+            Mathf.RoundToInt(targetPosition.y),
+            Mathf.RoundToInt(targetPosition.z)
+        );
+
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }

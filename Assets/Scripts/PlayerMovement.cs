@@ -1,16 +1,22 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    // TO DO: organize the order of these variable so it isn't too messy
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private bool isGrounded;
     [SerializeField] private float customGravityIntensifier;
+    [SerializeField] private float ungroundedSpeedDivisor;
+    [SerializeField] private float enteredPortalSpeed;
 
     [SerializeField] private Transform gfxContainer;
-    [SerializeField] private float previousDirection;
+
+    [SerializeField] private float reGroundingMakeUp;
+    public float previousDirection;
 
     private float horizontal;
     private Rigidbody2D rb;
@@ -43,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("jump");
             rb.AddForce(new Vector2(0f, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0f, horizontal * 10f * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
     }
 
@@ -55,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleHorizontalMovement()
     {
-        horizontal = Mathf.Round(Input.GetAxisRaw("Horizontal") * 2f) / 2f;
+        horizontal = Input.GetAxisRaw("Horizontal");
         Vector2 moveVector = new(horizontal * speed * rb.gravityScale, 0f);
 
         if (horizontal != 0) {
@@ -74,9 +81,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (!isGrounded) {
-            moveVector.x /= 1.8f;
+            moveVector.x /= ungroundedSpeedDivisor;
         }
 
         rb.AddForce(moveVector * Time.fixedDeltaTime);
+    }
+
+    public void AddForceOnEnteringPortal() {
+        rb.AddForce(enteredPortalSpeed * Time.fixedDeltaTime * rb.velocity);
+        rb.AddForce(100f * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);
+    }
+
+    private void OnCollisionEnter2D(Collision2D col) {
+        // add a force in the direction that we're headed to make the movement feel smoother
+        Vector2 forceVec = new(col.relativeVelocity.x, 0);
+        rb.AddForce(reGroundingMakeUp * Time.fixedDeltaTime * -forceVec, ForceMode2D.Impulse);
     }
 }

@@ -10,6 +10,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Portal primaryPortal;
     [SerializeField] private Portal secondaryPortal;
 
+    private PlayerMovement movement;
+
+    private void Start() {
+        movement = this.GetComponent<PlayerMovement>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -34,7 +40,7 @@ public class Player : MonoBehaviour
             portal.isPrimaryPortal = isPrimary;
             portal.Init();
             portal.SetColor();
-
+            portal.transform.localScale = new Vector3(-movement.previousDirection, 1, 1); // make child objects of the portal (could be lights/particles, etc.) face the player
 
             if (isPrimary) {
                 primaryPortal = portal;

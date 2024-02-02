@@ -20,6 +20,7 @@ public class Portal : MonoBehaviour
             Debug.Log("PORATDSFLAJSDF;L");
 
             col.GetComponent<Player>().TeleportPlayer(isPrimaryPortal);
+            col.GetComponent<PlayerMovement>().AddForceOnEnteringPortal();
         }
     }
 
