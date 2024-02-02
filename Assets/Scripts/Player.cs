@@ -1,35 +1,61 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask portalable;
     [SerializeField] private GameObject portalPrefab;
+    [SerializeField] private Transform firepoint;
+
+    [SerializeField] private Portal primaryPortal;
+    [SerializeField] private Portal secondaryPortal;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // shoot portal right
-            ShootPortal(new Vector2(1, 0));
-        } 
+            ShootPortal(true);
+        }
         
-        else if (Input.GetKeyDown(KeyCode.Q)) {
-            // shoot portal left
-            ShootPortal(new Vector2(-1, 0));
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ShootPortal(false);
         }
     }
 
-    private void ShootPortal(Vector2 dir) {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 100f, portalable);
+    private void ShootPortal(bool isPrimary) {
+        RaycastHit2D hit = Physics2D.Raycast(firepoint.position, firepoint.right, 100f, portalable);
         if (hit.collider) {
             Vector3 hitPoint = hit.point;
-            GameObject portalInstance = GameObject.Instantiate(portalPrefab);
+            GameObject portalInstance = Instantiate(portalPrefab);
             portalInstance.transform.position = hitPoint;
 
             Portal portal = portalInstance.GetComponent<Portal>();
-           // portal.Init();
-           // portal.isA = true;
-           // portal.RefreshColor();
+            portal.isPrimaryPortal = isPrimary;
+            portal.Init();
+            portal.SetColor();
+
+
+            if (isPrimary) {
+                primaryPortal = portal;
+
+                GameObject existingPortalGameObject = GameObject.FindGameObjectWithTag("PortalPrimary");
+                if (existingPortalGameObject != null)
+                    existingPortalGameObject.SetActive(false);
+
+                portal.gameObject.tag = "PortalPrimary";
+            } 
+            
+            else {
+                secondaryPortal = portal;
+
+                GameObject existingPortalGameObject = GameObject.FindGameObjectWithTag("PortalSecondary");
+                
+                if (existingPortalGameObject != null)
+                    existingPortalGameObject.SetActive(false);
+
+                portal.gameObject.tag = "PortalSecondary";
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9190542737039877349}
   - component: {fileID: 6858384187911870216}
   - component: {fileID: 2403546551892829682}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253f6298eab16f347a06903f1161f899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portalA: {r: 1, g: 0.4189906, b: 0, a: 0}
-  portalB: {r: 0.38242897, g: 0.2971698, b: 1, a: 0}
+  portalA: {r: 1, g: 0.4189906, b: 0, a: 1}
+  portalB: {r: 0.38242897, g: 0.2971698, b: 1, a: 1}
   portalSprite: {fileID: 0}
-  isA: 0
+  isPrimaryPortal: 0
 --- !u!61 &2403546551892829682
 BoxCollider2D:
   m_ObjectHideFlags: 0
