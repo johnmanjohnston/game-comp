@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +7,7 @@ public class Portal : MonoBehaviour
     [SerializeField] private Color portalB;
 
     [SerializeField] private SpriteRenderer portalSprite;
+    public bool canTeleport = true;
 
     public void Init() {
         portalSprite = this.GetComponentInChildren<SpriteRenderer>();
@@ -16,8 +16,16 @@ public class Portal : MonoBehaviour
     public bool isPrimaryPortal;
 
     public void OnTriggerEnter2D(Collider2D col) {
-        if (col.CompareTag("Player")) {
+        if (col.CompareTag("Player") && canTeleport) {
             Debug.Log("PORATDSFLAJSDF;L");
+
+            col.GetComponent<Player>().TeleportPlayer(isPrimaryPortal);
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D col) {
+        if (col.GetComponent<Player>()) {
+            canTeleport = true;
         }
     }
 

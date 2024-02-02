@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -55,6 +55,22 @@ public class Player : MonoBehaviour
                     existingPortalGameObject.SetActive(false);
 
                 portal.gameObject.tag = "PortalSecondary";
+            }
+        }
+    }
+
+    public void TeleportPlayer(bool enteredPrimaryPortal) {
+        if (enteredPrimaryPortal) {
+            if (secondaryPortal != null) {
+                transform.position = secondaryPortal.transform.position;
+                secondaryPortal.canTeleport = false;
+            }
+        }
+
+        else {
+            if (primaryPortal != null) {
+                transform.position = primaryPortal.transform.position;
+                primaryPortal.canTeleport = false;
             }
         }
     }

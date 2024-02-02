@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3963847420298577390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5812658, y: 1.0738646, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49,6 +49,7 @@ MonoBehaviour:
   portalA: {r: 1, g: 0.4189906, b: 0, a: 1}
   portalB: {r: 0.38242897, g: 0.2971698, b: 1, a: 1}
   portalSprite: {fileID: 0}
+  canTeleport: 1
   isPrimaryPortal: 0
 --- !u!61 &2403546551892829682
 BoxCollider2D:
@@ -82,7 +83,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1496622, y: 0}
+  m_Offset: {x: -0.0041232556, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -93,7 +94,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14720786, y: 1}
+  m_Size: {x: 0.27090582, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &6400606833022406566
 GameObject:
@@ -121,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 6400606833022406566}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1475, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.11515594, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
