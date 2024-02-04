@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private bool isGrounded;
+    [SerializeField] private float distanceToGround;
+    [SerializeField] private int numJumps;
     [SerializeField] private float customGravityIntensifier;
     [SerializeField] private float ungroundedSpeedDivisor;
     [SerializeField] private float enteredPortalSpeed;
@@ -39,22 +41,34 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void HandleGroundCheck() {
-        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, (transform.localScale.y / 2) + .1f, groundLayer);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, (transform.localScale.y / 2) + .1f, groundLayer);
+        isGrounded = ray;
+        distanceToGround = ray.distance;
+
+        if (isGrounded) numJumps = 2;
     }
 
     private void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && numJumps > 1)
         {
-            Debug.Log("jump");
+
             rb.AddForce(new Vector2(0f, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
             rb.AddForce(new Vector2(0f, horizontal * 10f * Time.fixedDeltaTime), ForceMode2D.Impulse);
+
+            if (!isGrounded) {
+                // this is the double jump
+                rb.AddForce(new Vector2(0f, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
+            }
+
+            numJumps--;
         }
     }
 
     private void AddExtraGravity() {
         if (!isGrounded) {
-            Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier));
+
+            Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier + distanceToGround));
             rb.AddForce(gravity * Time.fixedDeltaTime);
         }
     }
@@ -93,7 +107,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col) {
         // add a force in the direction that we're headed to make the movement feel smoother
-        Vector2 forceVec = new(col.relativeVelocity.x, 0);
-        rb.AddForce(reGroundingMakeUp * Time.fixedDeltaTime * -forceVec, ForceMode2D.Impulse);
+        if (isGrounded) {
+            Vector2 forceVec = new(col.relativeVelocity.x, 0);
+            rb.AddForce(horizontal * reGroundingMakeUp * Time.fixedDeltaTime * -forceVec, ForceMode2D.Impulse);
+        }
     }
 }
