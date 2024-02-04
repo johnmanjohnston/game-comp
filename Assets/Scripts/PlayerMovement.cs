@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
@@ -41,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void HandleGroundCheck() {
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, (transform.localScale.y / 2) + .1f, groundLayer);
-        isGrounded = ray;
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, 100f, groundLayer);
+        isGrounded = ray.collider != null && ray.distance <= (transform.localScale.y / 2) + .1f;
         distanceToGround = ray.distance;
 
         if (isGrounded) numJumps = 2;
@@ -52,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && numJumps > 1)
         {
-
             rb.AddForce(new Vector2(0f, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
             rb.AddForce(new Vector2(0f, horizontal * 10f * Time.fixedDeltaTime), ForceMode2D.Impulse);
 
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     private void AddExtraGravity() {
         if (!isGrounded) {
 
-            Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier + distanceToGround));
+            Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier * Math.Max(distanceToGround * distanceToGround, customGravityIntensifier)));
             rb.AddForce(gravity * Time.fixedDeltaTime);
         }
     }
