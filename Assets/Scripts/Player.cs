@@ -30,12 +30,16 @@ public class Player : MonoBehaviour
     }
 
     private void ShootPortal(bool isPrimary) {
+        // send raycast to shoot portal
         RaycastHit2D hit = Physics2D.Raycast(firepoint.position, firepoint.right, 100f, portalable);
+
         if (hit.collider) {
+            // assign hit point, create portal, configure portal position
             Vector3 hitPoint = hit.point;
             GameObject portalInstance = Instantiate(portalPrefab);
             portalInstance.transform.position = hitPoint;
 
+            // configure portal gameobject's Portal class variables
             Portal portal = portalInstance.GetComponent<Portal>();
             portal.isPrimaryPortal = isPrimary;
             portal.Init();

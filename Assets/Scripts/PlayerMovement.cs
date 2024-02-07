@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // TO DO: organize the order of these variable so it isn't too messy
+    // Variables -- '[SerializeField]' just lets it be visible in the Unity Inspector
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     [SerializeField] private LayerMask groundLayer;
@@ -23,18 +24,21 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private Rigidbody2D rb;
 
+    // Called when the scene loads
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
+    // Called every PHYSICS update
     private void FixedUpdate()
     {
         HandleHorizontalMovement();
         AddExtraGravity();
     }
 
+    // Called every frame
     private void Update()
     {
         HandleJump();
@@ -42,15 +46,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void HandleGroundCheck() {
+        // raycast downwords and check if the collider exists, and the distance is sufficient
+        // to mark the player as grounded
         RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, 100f, groundLayer);
         isGrounded = ray.collider != null && ray.distance <= (transform.localScale.y / 2) + .1f;
         distanceToGround = ray.distance;
 
-        if (isGrounded) numJumps = 2;
+        if (isGrounded) numJumps = 2; // if we're grounded, restore the double-jump ability
     }
 
     private void HandleJump()
     {
+        // bind the Space, W, and Up Arrow Keys to jump
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && numJumps > 1)
         {
             rb.AddForce(new Vector2(0f, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
@@ -66,8 +73,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void AddExtraGravity() {
-        if (!isGrounded) {
+        // add extra gravity using custom equation, which lets the movement
+        // feel more "responsive"        
 
+        // TODO: Refactor, adjust, and optimize the gravity equation
+        if (!isGrounded) {
             Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier * Math.Max(distanceToGround * distanceToGround, customGravityIntensifier)));
             rb.AddForce(gravity * Time.fixedDeltaTime);
         }
@@ -75,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleHorizontalMovement()
     {
+        // get axis value and create vector based off of set
+        // speed and physics body's gravity scale
         horizontal = Input.GetAxisRaw("Horizontal");
         Vector2 moveVector = new(horizontal * speed * rb.gravityScale, 0f);
 
@@ -93,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        // if we're not grounded, make the player a bit slower
         if (!isGrounded) {
             moveVector.x /= ungroundedSpeedDivisor;
         }
@@ -100,6 +113,10 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(moveVector * Time.fixedDeltaTime);
     }
 
+    // When we enter a portal, add a force to make the transition
+    // from one portal to another, feel "smooth."
+    // This function is called from the Portal class when we
+    // teleport the player.
     public void AddForceOnEnteringPortal() {
         rb.AddForce(enteredPortalSpeed * Time.fixedDeltaTime * rb.velocity);
         rb.AddForce(100f * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);
