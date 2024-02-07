@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
@@ -16,10 +17,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float ungroundedSpeedDivisor;
     [SerializeField] private float enteredPortalSpeed;
 
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private bool dashCooldownExpired;
+    [SerializeField] private float dashCooldown;
+
     [SerializeField] private Transform gfxContainer;
 
     [SerializeField] private float reGroundingMakeUp;
     public float previousDirection;
+    private Vector2 moveVector;
 
     private float horizontal;
     private Rigidbody2D rb;
@@ -29,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        dashCooldownExpired = true; // allow dashing when game starts
     }
 
     // Called every PHYSICS update
@@ -41,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     // Called every frame
     private void Update()
     {
+        HandleDash();
         HandleJump();
         HandleGroundCheck();
     }
@@ -88,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         // get axis value and create vector based off of set
         // speed and physics body's gravity scale
         horizontal = Input.GetAxisRaw("Horizontal");
-        Vector2 moveVector = new(horizontal * speed * rb.gravityScale, 0f);
+        moveVector = new(horizontal * speed * rb.gravityScale, 0f);
 
         if (horizontal != 0) {
             if (horizontal != previousDirection) {
@@ -111,6 +120,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.AddForce(moveVector * Time.fixedDeltaTime);
+    }
+
+    private void HandleDash() {
+        // ensure the physics body's velocity is ~0
+        bool isMoving = !(rb.velocity.x < (0 + float.Epsilon) && rb.velocity.x > (0 - float.Epsilon));
+
+        // make sure player can dash if Left Shift is pressed and they're moving
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isMoving && dashCooldownExpired) {
+            // add force to move player in the direction that they are facing
+            Vector2 dashVector = new(dashSpeed * previousDirection, 0f);
+            rb.AddForce(dashVector * Time.fixedDeltaTime, ForceMode2D.Impulse);
+
+            StartCoroutine(ResetDashCooldown());
+        }
+    }
+
+    private IEnumerator ResetDashCooldown() {
+        dashCooldownExpired = false;
+        yield return new WaitForSeconds(dashCooldown);
+        dashCooldownExpired = true;
     }
 
     // When we enter a portal, add a force to make the transition
