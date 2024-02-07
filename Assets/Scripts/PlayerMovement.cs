@@ -28,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
     public float previousDirection;
     private Vector2 moveVector;
 
-    private float horizontal;
-    private Rigidbody2D rb;
+    public float horizontal;
+    public Rigidbody2D rb;
 
     // Called when the scene loads
     private void Start()
