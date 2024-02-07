@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     // Variables -- '[SerializeField]' just lets it be visible in the Unity Inspector
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float doubleJumpForce;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private bool isGrounded;
     [SerializeField] private float distanceToGround;
@@ -74,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!isGrounded) {
                 // this is the double jump
-                rb.AddForce(new Vector2(0f, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(0f, doubleJumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
             }
 
             numJumps--;
@@ -86,8 +87,9 @@ public class PlayerMovement : MonoBehaviour
         // feel more "responsive"        
 
         // TODO: Refactor, adjust, and optimize the gravity equation
-        if (!isGrounded) {
-            Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier * Math.Max(distanceToGround * distanceToGround, customGravityIntensifier)));
+        if (!isGrounded && distanceToGround > .8f) {
+            // Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier * Math.Max(distanceToGround * distanceToGround, customGravityIntensifier)));
+            Vector2 gravity = new(0, customGravityIntensifier * Mathf.Pow(distanceToGround + 5f, 2f));
             rb.AddForce(gravity * Time.fixedDeltaTime);
         }
     }
@@ -97,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         // get axis value and create vector based off of set
         // speed and physics body's gravity scale
         horizontal = Input.GetAxisRaw("Horizontal");
-        moveVector = new(horizontal * speed * rb.gravityScale, 0f);
+        moveVector = new(horizontal * speed, 0f);
 
         if (horizontal != 0) {
             if (horizontal != previousDirection) {
@@ -152,10 +154,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
+        // this system is annoying to get working. i'll do this later.
+
+        /*
         // add a force in the direction that we're headed to make the movement feel smoother
         if (isGrounded) {
-            Vector2 forceVec = new(col.relativeVelocity.x, 0);
-            rb.AddForce(horizontal * reGroundingMakeUp * Time.fixedDeltaTime * -forceVec, ForceMode2D.Impulse);
+            Vector2 forceVec = new(reGroundingMakeUp, 0);
+            rb.AddForce(previousDirection * Time.fixedDeltaTime * forceVec, ForceMode2D.Impulse);
         }
+        */
     }
 }
