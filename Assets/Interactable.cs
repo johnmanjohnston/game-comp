@@ -10,12 +10,14 @@ namespace GameComp.Interactables {
             GetComponent<Collider2D>().isTrigger = true;
         }
 
+        // allow the function to be overriden to provide custom functionality
         protected virtual void OnInteract() {
             print("OnInteract() called");
         }
 
         private bool playerInRange;
         private void Update() {
+            // if player is in range, and clicks the F key, perform the interactable function
             if (playerInRange) {
                 if (Input.GetKeyDown(KeyCode.F)) {
                     this.OnInteract();
@@ -33,7 +35,7 @@ namespace GameComp.Interactables {
 
         private void OnTriggerExit2D(Collider2D col) {
             if (col.gameObject.CompareTag("Player")) {
-                // player is within range
+                // player is out of range
                 GameManager.ConfigureInteractableIconVisibility(false);
                 playerInRange = false;
             }
