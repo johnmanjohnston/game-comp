@@ -24,3 +24,11 @@ Variables will be named using camelCase, for example:
 private float demoVariable;
 ```
 </details>
+
+<details>
+  <summary>To the instructions for designers, click me.</summary>
+  Make sure you have any pixel-art software installed. We'll decide on an art-style and target resolution later.
+
+  ### Uploading Art
+  In the Assets folder, open the "Art" folder and upload art into the appropriate sub-folder, if it exists.
+</details>
