@@ -93,10 +93,7 @@ public class PlayerMovement : MonoBehaviour
     private void AddExtraGravity() {
         // add extra gravity using custom equation, which lets the movement
         // feel more "responsive"        
-
-        // TODO: Refactor, adjust, and optimize the gravity equation
         if (!isGrounded) {
-            // Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier * Math.Max(distanceToGround * distanceToGround, customGravityIntensifier)));
             Vector2 gravity = new(0, -(customGravityIntensifier * (customGravityAmountToAdd * customGravityAmountToAdd)));
             rb.AddForce(gravity);
         }
@@ -162,8 +159,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
-        // this system is annoying to get working. i'll do this later.
-
        // add force in the direction that we're headed to make movement feel "smoother"
         if (distanceToGround < .9f) {    
             Vector2 vec = new(reGroundingMakeUp * horizontal, 0f);

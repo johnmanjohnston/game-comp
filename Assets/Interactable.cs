@@ -5,7 +5,6 @@ namespace GameComp.Interactables {
     [RequireComponent(typeof(Collider2D))]
     public class Interactable : MonoBehaviour
     {
-
         private void Start() {
             GetComponent<Collider2D>().isTrigger = true;
         }

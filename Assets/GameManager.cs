@@ -7,6 +7,7 @@ namespace GameComp.Core {
         private static GameObject interactableIcon;
 
         private void Awake() {
+            // configure and assign variables
             PlayerInRangeOfInteractable = false;
             interactableIcon = GameObject.Find("Interactable Icon");
 
