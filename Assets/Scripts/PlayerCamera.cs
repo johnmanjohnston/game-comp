@@ -1,5 +1,6 @@
 using UnityEngine;
 
+namespace GameComp.PlayerConfigs {
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private Vector3 offset;
@@ -24,4 +25,5 @@ public class PlayerCamera : MonoBehaviour
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
+}
 }

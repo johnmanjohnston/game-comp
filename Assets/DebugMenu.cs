@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using GameComp.PlayerConfigs;
 
 public class DebugMenu : MonoBehaviour
 {
@@ -12,6 +13,6 @@ public class DebugMenu : MonoBehaviour
     }
 
     private void Update() {
-        text.text = $"Velocity: {mv.rb.velocity}\n Horizontal: {mv.horizontal}";
+        text.text = $"Velocity: {mv.rb.velocity}\n Horizontal: {mv.horizontal}\n Previous Direction: {mv.previousDirection}";
     }
 }

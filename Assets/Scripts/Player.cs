@@ -1,6 +1,7 @@
 using UnityEngine;
-using System.Collections;
+using GameComp.Mechanics;
 
+namespace GameComp.PlayerConfigs {
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask portalable;
@@ -84,4 +85,5 @@ public class Player : MonoBehaviour
             }
         }
     }
+}
 }

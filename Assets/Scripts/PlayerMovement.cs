@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+namespace GameComp.PlayerConfigs {
 [RequireComponent (typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float horizontal;
     public Rigidbody2D rb;
+
+    private float customGravityAmountToAdd;
 
     // Called when the scene loads
     private void Start()
@@ -63,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
         distanceToGround = ray.distance;
 
         if (isGrounded) numJumps = 2; // if we're grounded, restore the double-jump ability
+
+        if (!isGrounded) {
+            customGravityAmountToAdd += Time.deltaTime;
+        } else { customGravityAmountToAdd = 0f; }
     }
 
     private void HandleJump()
@@ -79,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             numJumps--;
+            customGravityAmountToAdd /= 1.5f;
         }
     }
 
@@ -87,10 +95,10 @@ public class PlayerMovement : MonoBehaviour
         // feel more "responsive"        
 
         // TODO: Refactor, adjust, and optimize the gravity equation
-        if (!isGrounded && distanceToGround > .8f) {
+        if (!isGrounded) {
             // Vector2 gravity = new(0, -(rb.velocity.y * (rb.velocity.y / 2) * customGravityIntensifier * Math.Max(distanceToGround * distanceToGround, customGravityIntensifier)));
-            Vector2 gravity = new(0, customGravityIntensifier * Mathf.Pow(distanceToGround + 5f, 2f));
-            rb.AddForce(gravity * Time.fixedDeltaTime);
+            Vector2 gravity = new(0, -(customGravityIntensifier * (customGravityAmountToAdd * customGravityAmountToAdd)));
+            rb.AddForce(gravity);
         }
     }
 
@@ -164,4 +172,5 @@ public class PlayerMovement : MonoBehaviour
         }
         */
     }
+}
 }

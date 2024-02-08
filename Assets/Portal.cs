@@ -1,6 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using GameComp.PlayerConfigs;
 
+namespace GameComp.Mechanics {
 public class Portal : MonoBehaviour
 {
     [SerializeField] private Color portalA;
@@ -34,4 +35,5 @@ public class Portal : MonoBehaviour
         if (isPrimaryPortal) portalSprite.color = portalA;
         else portalSprite.color = portalB;
     }
+}
 }
