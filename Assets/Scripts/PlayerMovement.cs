@@ -164,13 +164,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col) {
         // this system is annoying to get working. i'll do this later.
 
-        /*
-        // add a force in the direction that we're headed to make the movement feel smoother
-        if (isGrounded) {
-            Vector2 forceVec = new(reGroundingMakeUp, 0);
-            rb.AddForce(previousDirection * Time.fixedDeltaTime * forceVec, ForceMode2D.Impulse);
+       // add force in the direction that we're headed to make movement feel "smoother"
+        if (distanceToGround < .9f) {    
+            Vector2 vec = new(reGroundingMakeUp * horizontal, 0f);
+            print(vec);
+            rb.AddForce(vec * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
-        */
     }
 }
 }

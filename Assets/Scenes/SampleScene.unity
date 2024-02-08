@@ -1448,7 +1448,7 @@ MonoBehaviour:
   dashCooldownExpired: 0
   dashCooldown: 2
   gfxContainer: {fileID: 903720556}
-  reGroundingMakeUp: -2
+  reGroundingMakeUp: 500
   previousDirection: 0
   horizontal: 0
   rb: {fileID: 0}
