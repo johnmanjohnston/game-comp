@@ -5,13 +5,21 @@ namespace GameComp.Interactables {
     [RequireComponent(typeof(Collider2D))]
     public class Interactable : MonoBehaviour
     {
-        private void Start() {
+        private void Awake() {
             GetComponent<Collider2D>().isTrigger = true;
         }
 
         // allow the function to be overriden to provide custom functionality
         protected virtual void OnInteract() {
             print("OnInteract() called");
+        }
+
+        protected virtual void OnPlayerEnterRange() {
+            GameManager.ConfigureInteractableIconVisibility(true);
+        }
+
+        protected virtual void OnPlayerExitRange() {
+            GameManager.ConfigureInteractableIconVisibility(false);
         }
 
         private bool playerInRange;
@@ -27,20 +35,20 @@ namespace GameComp.Interactables {
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.CompareTag("Player")) {
                 // player is within range
-                GameManager.ConfigureInteractableIconVisibility(true);
                 playerInRange = true;
-
                 GameManager.PlayerInRangeOfInteractable = true;
+
+                this.OnPlayerEnterRange();
             }
         }
 
         private void OnTriggerExit2D(Collider2D col) {
             if (col.gameObject.CompareTag("Player")) {
                 // player is out of range
-                GameManager.ConfigureInteractableIconVisibility(false);
                 playerInRange = false;
-
                 GameManager.PlayerInRangeOfInteractable = false;
+
+                this.OnPlayerExitRange();
             }
         }
     }

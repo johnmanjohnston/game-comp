@@ -1,5 +1,6 @@
 using UnityEngine;
 using GameComp.Mechanics;
+using System.Collections.Generic;
 
 namespace GameComp.PlayerConfigs {
 public class Player : MonoBehaviour
@@ -12,6 +13,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Portal secondaryPortal;
 
     private PlayerMovement movement;
+
+    [SerializeField] private List<InventoryItem> inventoryItems;
+    [SerializeField] private int inventoryItemCountLimit;
 
     private void Start() {
         movement = this.GetComponent<PlayerMovement>();
@@ -84,6 +88,10 @@ public class Player : MonoBehaviour
                 primaryPortal.canTeleport = false;
             }
         }
+    }
+
+    public void TryAddItemToInventory(InventoryItem item) {
+        this.inventoryItems.Add(item);
     }
 }
 }
