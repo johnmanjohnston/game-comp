@@ -23,6 +23,11 @@ Variables will be named using camelCase, for example:
 ```cs
 private float demoVariable;
 ```
+
+However, static variables will be named using PascalCalse, for example:
+```cs
+public static float DemoStaticVariable;
+```
 </details>
 
 <details>
