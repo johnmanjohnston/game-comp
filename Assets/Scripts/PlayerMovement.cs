@@ -26,11 +26,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform gfxContainer;
 
     [SerializeField] private float reGroundingMakeUp;
-    public float previousDirection;
+    public float previousDirection { get; private set; }
     private Vector2 moveVector;
 
-    public float horizontal;
-    public Rigidbody2D rb;
+    public float horizontal { get; private set; }
+    public Rigidbody2D rb { get; private set; }
 
     private float customGravityAmountToAdd;
 
@@ -164,6 +164,12 @@ public class PlayerMovement : MonoBehaviour
             Vector2 vec = new(reGroundingMakeUp * horizontal * ((customGravityAmountToAdd+1) * (customGravityAmountToAdd*1)) * 1.5f, 0f);
             rb.AddForce(vec * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
+    }
+
+    // boost player, for use from the FLIER
+    public void BoostPlayer(float amount, Vector2 dir) {
+        customGravityAmountToAdd = Math.Min(customGravityAmountToAdd / 2f, .5f);
+        rb.AddForce(amount * Time.fixedDeltaTime * dir, ForceMode2D.Impulse);
     }
 }
 }

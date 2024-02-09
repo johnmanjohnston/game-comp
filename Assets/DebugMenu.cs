@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using GameComp.PlayerConfigs;
+using GameComp.Core;
 
 public class DebugMenu : MonoBehaviour
 {
@@ -13,6 +14,6 @@ public class DebugMenu : MonoBehaviour
     }
 
     private void Update() {
-        text.text = $"Velocity: {mv.rb.velocity}\n Horizontal: {mv.horizontal}\n Previous Direction: {mv.previousDirection}";
+        text.text = $"Velocity: {mv.rb.velocity}\nHorizontal: {mv.horizontal}\nPrevious Direction: {mv.previousDirection}\nPlayer in range of interactable (static): {GameManager.PlayerInRangeOfInteractable}";
     }
 }

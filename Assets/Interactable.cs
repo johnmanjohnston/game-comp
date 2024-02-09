@@ -29,6 +29,8 @@ namespace GameComp.Interactables {
                 // player is within range
                 GameManager.ConfigureInteractableIconVisibility(true);
                 playerInRange = true;
+
+                GameManager.PlayerInRangeOfInteractable = true;
             }
         }
 
@@ -37,6 +39,8 @@ namespace GameComp.Interactables {
                 // player is out of range
                 GameManager.ConfigureInteractableIconVisibility(false);
                 playerInRange = false;
+
+                GameManager.PlayerInRangeOfInteractable = false;
             }
         }
     }
