@@ -161,8 +161,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col) {
        // add force in the direction that we're headed to make movement feel "smoother"
         if (distanceToGround < .9f) {    
-            Vector2 vec = new(reGroundingMakeUp * horizontal, 0f);
-            print(vec);
+            Vector2 vec = new(reGroundingMakeUp * horizontal * ((customGravityAmountToAdd+1) * (customGravityAmountToAdd*1)) * 1.5f, 0f);
             rb.AddForce(vec * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
     }
