@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         // make sure player can dash if Left Shift is pressed and they're moving
         if (Input.GetKeyDown(KeyCode.LeftShift) && isMoving && dashCooldownExpired) {
             // add force to move player in the direction that they are facing
-            Vector2 dashVector = new(dashSpeed * previousDirection, 0f);
+            Vector2 dashVector = new(dashSpeed * previousDirection, jumpForce / 2f);
             rb.AddForce(dashVector * Time.fixedDeltaTime, ForceMode2D.Impulse);
 
             StartCoroutine(ResetDashCooldown());
@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col) {
        // add force in the direction that we're headed to make movement feel "smoother"
         if (distanceToGround < .9f) {    
-            Vector2 vec = new(reGroundingMakeUp * horizontal * ((customGravityAmountToAdd+1) * (customGravityAmountToAdd*1)) * 1.5f, 0f);
+            Vector2 vec = new(reGroundingMakeUp * horizontal * ((customGravityAmountToAdd + 1) * customGravityAmountToAdd) * 1.5f, 0f);
             rb.AddForce(vec * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
     }
