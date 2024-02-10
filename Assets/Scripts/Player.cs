@@ -1,6 +1,8 @@
 using UnityEngine;
 using GameComp.Mechanics;
 using System.Collections.Generic;
+using GameComp.Core;
+using UnityEngine.UI;
 
 namespace GameComp.PlayerConfigs {
 public class Player : MonoBehaviour
@@ -15,7 +17,6 @@ public class Player : MonoBehaviour
     private PlayerMovement movement;
 
     [SerializeField] private List<InventoryItem> inventoryItems;
-    [SerializeField] private int inventoryItemCountLimit;
 
     private void Start() {
         movement = this.GetComponent<PlayerMovement>();
@@ -91,7 +92,12 @@ public class Player : MonoBehaviour
     }
 
     public void TryAddItemToInventory(InventoryItem item) {
-        this.inventoryItems.Add(item);
+        if (inventoryItems.Count < GameManager.inventorySizeLimit) {
+            Sprite gfx = item.gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+            GameManager.DisplayItemInInventorySlot(gfx, this.inventoryItems.Count);
+
+            this.inventoryItems.Add(item);
+        }
     }
 }
 }
