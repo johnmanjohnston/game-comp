@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float horizontal { get; private set; }
     public Rigidbody2D rb { get; private set; }
+    private BoxCollider2D col;
 
     private float customGravityAmountToAdd;
 
@@ -39,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        col = GetComponent<BoxCollider2D>();
 
         dashCooldownExpired = true; // allow dashing when game starts
     }
@@ -62,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         // raycast downwords and check if the collider exists, and the distance is sufficient
         // to mark the player as grounded
         RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, 100f, groundLayer);
-        isGrounded = ray.collider != null && ray.distance <= (transform.localScale.y / 2) + .1f;
+        isGrounded = ray.collider != null && ray.distance <= (col.size.y / 2) + .1f;
         distanceToGround = ray.distance;
 
         if (isGrounded) numJumps = 2; // if we're grounded, restore the double-jump ability
@@ -158,12 +161,14 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(100f * Time.fixedDeltaTime * Vector2.up, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionEnter2D(Collision2D col) {
+    private void OnCollisionEnter2D(Collision2D other) {
        // add force in the direction that we're headed to make movement feel "smoother"
-        if (distanceToGround < .9f) {    
+        if (distanceToGround < (col.size.y / 2) + 0.2) {    
             Vector2 vec = new(reGroundingMakeUp * horizontal * ((customGravityAmountToAdd + 1) * customGravityAmountToAdd) * 1.5f, 0f);
             rb.AddForce(vec * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
+
+        print($"Player collision with {col.gameObject.name}");
     }
 
     // boost player, for use from the FLIER
