@@ -37,3 +37,15 @@ public static float DemoStaticVariable;
   ### Uploading Art
   In the Assets folder, open the "Art" folder and upload art into the appropriate sub-folder, if it exists.
 </details>
+
+### TODO LIST
+- [x] PROGRAMMING: Player Movement (minor improvements still to be made)
+- [x] PROGRAMMING: Inventory system
+- [ ] ART: Character/NPC designs
+- [ ] ART: Character/NPC animations
+- [ ] ART: Artifacts textures
+- [ ] ART: Level/environment textures
+- [ ] PROGRAMMING: Environment parallax
+- [ ] MISC: Soundtrack
+- [ ] PROGRAMMING/ART: Main menu
+- [ ] MISC: Storyline and level ideas
