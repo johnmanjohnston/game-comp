@@ -1,8 +1,9 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using GameComp.Mechanics;
-using System.Collections.Generic;
 using GameComp.Core;
-using UnityEngine.UI;
+using GameComp.Utilities;
 
 namespace GameComp.PlayerConfigs {
 public class Player : MonoBehaviour
@@ -16,10 +17,41 @@ public class Player : MonoBehaviour
 
     private PlayerMovement movement;
 
+    [SerializeField] private GameObject playerSpriteObject;
+    private SpriteRenderer gfx;
+
+    [SerializeField] private bool IGNORE_PLAYER_GFX_SCALE_FACTOR;
+
     [SerializeField] private List<InventoryItem> inventoryItems;
+
+    public List<StringIntPair> PLAYER_GFX_SCALE_FACTOR_LOOKUP_TABLE;
 
     private void Start() {
         movement = this.GetComponent<PlayerMovement>();
+        gfx = playerSpriteObject.GetComponent<SpriteRenderer>();
+
+        if (!IGNORE_PLAYER_GFX_SCALE_FACTOR) {
+            /*
+            int targetPlayerSpriteScaleFactor = Convert.ToInt16(gfx.sprite.ToString()[5].ToString());
+            Vector3 targetPlayerSpriteScaleVector = new(targetPlayerSpriteScaleFactor, targetPlayerSpriteScaleFactor, 1f); 
+            playerSpriteObject.transform.localScale = targetPlayerSpriteScaleVector;
+            print($"Player GFX name is {gfx.sprite.ToString()}, the scale factor is {targetPlayerSpriteScaleFactor}");
+            */
+
+                                        // 21 is the length of" (UnityEngine.Sprite)", including the space
+            string spriteName = gfx.sprite.ToString().Substring(0, gfx.sprite.ToString().Length - 21);
+            int? scaleFactor = StaticUtilities.GetValOfStringIntPair(PLAYER_GFX_SCALE_FACTOR_LOOKUP_TABLE, spriteName);
+            if (scaleFactor == null) { Debug.LogError($"SCALE FACTOR IS NULL. SPRITE NAME: {spriteName}"); }
+            else {
+                Vector3 scaleVector = new((int)scaleFactor, (int)scaleFactor, 1f);
+                playerSpriteObject.transform.localScale = scaleVector;
+
+                print($"Configured scale vector. Scale factor is {scaleFactor}, and the sprite name is {spriteName}");
+            }
+        } else {
+            Debug.LogWarning("IGNORING PLAYER GFX SCALING");
+        }
+
     }
 
     private void Update()
