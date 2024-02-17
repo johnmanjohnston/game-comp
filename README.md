@@ -41,6 +41,8 @@ public static float DemoStaticVariable;
 ### TODO LIST
 - [x] PROGRAMMING: Player Movement (minor improvements still to be made)
 - [x] PROGRAMMING: Inventory system
+- [ ] PROGRAMMING: Portal smoothening
+- [ ] ART/MISC: Particle effects
 - [ ] ART: Character/NPC designs
 - [ ] ART: Character/NPC animations
 - [ ] ART: Artifacts textures
@@ -48,4 +50,5 @@ public static float DemoStaticVariable;
 - [ ] PROGRAMMING: Environment parallax
 - [ ] MISC: Soundtrack
 - [ ] PROGRAMMING/ART: Main menu
+- [ ] PROGRAMMING/ART: Pause menu
 - [ ] MISC: Storyline and level ideas
