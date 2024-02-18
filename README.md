@@ -52,3 +52,4 @@ public static float DemoStaticVariable;
 - [ ] PROGRAMMING/ART: Main menu
 - [ ] PROGRAMMING/ART: Pause menu
 - [ ] MISC: Storyline and level ideas
+- [ ] PROGRAMMING: Door security code mechanism
