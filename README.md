@@ -53,3 +53,5 @@ public static float DemoStaticVariable;
 - [ ] PROGRAMMING/ART: Pause menu
 - [ ] MISC: Storyline and level ideas
 - [ ] PROGRAMMING: Door security code mechanism
+- [ ] PROGRAMMING/ART: Redstone system
+- [ ] PROGRAMMING/ART: Lever to trigger circuits/doors
