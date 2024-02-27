@@ -40,18 +40,18 @@ public static float DemoStaticVariable;
 
 ### TODO LIST
 - [x] PROGRAMMING: Player Movement (minor improvements still to be made)
-- [x] PROGRAMMING: Inventory system
+- [x] ~~PROGRAMMING: Inventory system~~
 - [ ] PROGRAMMING: Portal smoothening
-- [ ] ART/MISC: Particle effects
-- [ ] ART: Character/NPC designs
-- [ ] ART: Character/NPC animations
-- [ ] ART: Artifacts textures
-- [ ] ART: Level/environment textures
+- [ ] ~~ART/MISC: Particle effects~~
+- [ ] ~~ART: Character/NPC designs~~
+- [ ] ~~ART: Character/NPC animations~~
+- [ ] ~~ART: Artifacts textures~~
+- [ ] ~~ART: Level/environment textures~~
 - [ ] PROGRAMMING: Environment parallax
 - [ ] MISC: Soundtrack
 - [ ] PROGRAMMING/ART: Main menu
-- [ ] PROGRAMMING/ART: Pause menu
+- [ ] ~~PROGRAMMING/ART: Pause menu~~
 - [ ] MISC: Storyline and level ideas
 - [ ] PROGRAMMING: Door security code mechanism
-- [ ] PROGRAMMING/ART: Redstone system
-- [ ] PROGRAMMING/ART: Lever to trigger circuits/doors
+- [ ] ~~PROGRAMMING/ART: Redstone system~~
+- [ ] ~~PROGRAMMING/ART: Lever to trigger circuits/doors~~
