@@ -1,4 +1,4 @@
-using UnityEngine
+using UnityEngine;
 
 public class Door : MonoBehaviour {
 // i am eriting thus code on my ipad and cant test this. changes will most likely havw to be made
@@ -9,6 +9,8 @@ public bool isOpened;
 public float openHeightAmount;
 private Vector3 closePos;
 private Vector3 openPos;
+
+    public float t;
 
 private void Start() {
     closePos = doorObject.transform.position;
@@ -22,12 +24,12 @@ private void Start() {
 
 public void OpenDoor() {
 isOpened = true;
-doorObject.transform.position = Vector3.Lerp(doorObject.transform.position, openPos);
+doorObject.transform.position = Vector3.Lerp(doorObject.transform.position, openPos, t);
 }
 
 public void CloseDoor() {
 isOpened = false;
-doorObject.transform.position = Vector3.Lerp(doorObject.transform.position, closePos);
+doorObject.transform.position = Vector3.Lerp(doorObject.transform.position, closePos, t);
 }
 
 }

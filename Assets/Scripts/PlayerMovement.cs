@@ -35,6 +35,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float customGravityAmountToAdd;
 
+        // animation
+        public Animator animator;
+        // shouldPlayRunAnim is for run animation
+
     // Called when the scene loads
     private void Start()
     {
@@ -108,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
         // speed and physics body's gravity scale
         horizontal = Input.GetAxisRaw("Horizontal");
         moveVector = new(horizontal * speed, 0f);
+
+        animator.SetBool("shouldPlayRunAnim", horizontal != 0f);
 
         if (horizontal != 0) {
             if (horizontal != previousDirection) {

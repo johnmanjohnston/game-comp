@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using GameComp.Mechanics;
 using GameComp.Core;
 using GameComp.Utilities;
+using System.Collections;
 
 namespace GameComp.PlayerConfigs {
 public class Player : MonoBehaviour
@@ -69,42 +69,9 @@ public class Player : MonoBehaviour
 
     private void ShootPortal(bool isPrimary) {
         // send raycast to shoot portal
-        RaycastHit2D hit = Physics2D.Raycast(firepoint.position, firepoint.right, 100f, portalable);
-
-        if (hit.collider) {
-            // assign hit point, create portal, configure portal position
-            Vector3 hitPoint = hit.point;
-            GameObject portalInstance = Instantiate(portalPrefab);
-            portalInstance.transform.position = hitPoint;
-
-            // configure portal gameobject's Portal class variables
-            Portal portal = portalInstance.GetComponent<Portal>();
-            portal.isPrimaryPortal = isPrimary;
-            portal.Init();
-            portal.SetColor();
-            portal.transform.localScale = new Vector3(-movement.previousDirection, 1, 1); // make child objects of the portal (could be lights/particles, etc.) face the player
-
-            if (isPrimary) {
-                primaryPortal = portal;
-
-                GameObject existingPortalGameObject = GameObject.FindGameObjectWithTag("PortalPrimary");
-                if (existingPortalGameObject != null)
-                    existingPortalGameObject.SetActive(false);
-
-                portal.gameObject.tag = "PortalPrimary";
-            } 
-            
-            else {
-                secondaryPortal = portal;
-
-                GameObject existingPortalGameObject = GameObject.FindGameObjectWithTag("PortalSecondary");
-                
-                if (existingPortalGameObject != null)
-                    existingPortalGameObject.SetActive(false);
-
-                portal.gameObject.tag = "PortalSecondary";
-            }
-        }
+        movement.animator.SetTrigger("portalShootAnim");
+        StartCoroutine(ShootPortalWithDelay(isPrimary));
+        StartCoroutine(ResetPortalAnimationTrigger());
     }
 
     public void TeleportPlayer(bool enteredPrimaryPortal) {
@@ -131,5 +98,58 @@ public class Player : MonoBehaviour
             this.inventoryItems.Add(item);
         }
     }
+
+        [SerializeField] private float portalShootDelay;
+    private IEnumerator ResetPortalAnimationTrigger()
+    {
+        yield return new WaitForSeconds(portalShootDelay);
+        movement.animator.ResetTrigger("portalShootAnim");
+    }
+
+    private IEnumerator ShootPortalWithDelay(bool isPrimary)
+    {
+            yield return new WaitForSeconds(portalShootDelay);
+
+
+            RaycastHit2D hit = Physics2D.Raycast(firepoint.position, firepoint.right, 100f, portalable);
+
+            if (hit.collider)
+            {
+                // assign hit point, create portal, configure portal position
+                Vector3 hitPoint = hit.point;
+                GameObject portalInstance = Instantiate(portalPrefab);
+                portalInstance.transform.position = hitPoint;
+
+                // configure portal gameobject's Portal class variables
+                Portal portal = portalInstance.GetComponent<Portal>();
+                portal.isPrimaryPortal = isPrimary;
+                portal.Init();
+                portal.SetColor();
+                portal.transform.localScale = new Vector3(-movement.previousDirection, 1, 1); // make child objects of the portal (could be lights/particles, etc.) face the player
+
+                if (isPrimary)
+                {
+                    primaryPortal = portal;
+
+                    GameObject existingPortalGameObject = GameObject.FindGameObjectWithTag("PortalPrimary");
+                    if (existingPortalGameObject != null)
+                        existingPortalGameObject.SetActive(false);
+
+                    portal.gameObject.tag = "PortalPrimary";
+                }
+
+                else
+                {
+                    secondaryPortal = portal;
+
+                    GameObject existingPortalGameObject = GameObject.FindGameObjectWithTag("PortalSecondary");
+
+                    if (existingPortalGameObject != null)
+                        existingPortalGameObject.SetActive(false);
+
+                    portal.gameObject.tag = "PortalSecondary";
+                }
+            }
+        }
 }
 }

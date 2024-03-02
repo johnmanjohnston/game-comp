@@ -38,7 +38,7 @@ MonoBehaviour:
     m_Value: {x: 0.95798737, y: 0.98784786, z: 1, w: 0.011173182}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9571005, z: 0.9618977, w: 0.022346368}
+    m_Value: {x: 1, y: 0.9571005, z: 0.9618977, w: -0.28607583}
   gain:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0.24581005}
@@ -167,7 +167,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1
   neutralHDRRangeReductionMode:
     m_OverrideState: 0
     m_Value: 2

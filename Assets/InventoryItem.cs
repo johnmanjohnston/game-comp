@@ -15,6 +15,8 @@ public class InventoryItem : Interactable
 
     protected override void OnInteract()
     {
+        Debug.LogWarning("The inventory feature has been removed due to lack of time.");
+        return;
         player.TryAddItemToInventory(this);
         this.gameObject.SetActive(false);
         print($"OnInteract() with InventoryItem. Played picked up item {itemName} which has an ID of {itemID}");
