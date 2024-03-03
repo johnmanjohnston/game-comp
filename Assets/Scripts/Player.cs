@@ -26,9 +26,13 @@ public class Player : MonoBehaviour
 
     public List<StringIntPair> PLAYER_GFX_SCALE_FACTOR_LOOKUP_TABLE;
 
+        private CameraShake cameraShake;
+
     private void Start() {
         movement = this.GetComponent<PlayerMovement>();
         gfx = playerSpriteObject.GetComponent<SpriteRenderer>();
+
+        cameraShake = FindObjectOfType<CameraShake>();
 
         if (!IGNORE_PLAYER_GFX_SCALE_FACTOR) {
             /*
@@ -112,6 +116,8 @@ public class Player : MonoBehaviour
 
 
             RaycastHit2D hit = Physics2D.Raycast(firepoint.position, firepoint.right, 100f, portalable);
+
+            cameraShake.Shake(.2f);
 
             if (hit.collider)
             {

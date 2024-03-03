@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PortalSecondary
   - PortalPrimary
+  - Scroll
   layers:
   - Default
   - TransparentFX

@@ -63,11 +63,14 @@
     <Compile Include="Assets\Scripts\Flier.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
     <Compile Include="Assets\FadeOut.cs" />
+    <Compile Include="Assets\CameraShake.cs" />
     <Compile Include="Assets\Scripts\DebugMenu.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
+    <Compile Include="Assets\ScrollActivation.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\DemoInteractable.cs" />
+    <Compile Include="Assets\Scroll.cs" />
     <Compile Include="Assets\InventoryItemDisplay.cs" />
     <Compile Include="Assets\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
