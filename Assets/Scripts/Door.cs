@@ -22,14 +22,24 @@ private void Start() {
     );
 }
 
-public void OpenDoor() {
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (isOpened) CloseDoor();
+            else OpenDoor();
+        }
+    }
+
+    public void OpenDoor() {
 isOpened = true;
-doorObject.transform.position = Vector3.Lerp(doorObject.transform.position, openPos, t);
+doorObject.transform.position = Vector3.Lerp(doorObject.transform.position, openPos, t * Time.deltaTime);
 }
 
 public void CloseDoor() {
 isOpened = false;
-doorObject.transform.position = Vector3.Lerp(doorObject.transform.position, closePos, t);
+doorObject.transform.position = Vector3.Lerp(doorObject.transform.position, closePos, t * Time.deltaTime);
 }
 
 }
