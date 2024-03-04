@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\DebugMenu.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
+    <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\UnlockCodeButtonSubmission.cs" />
     <Compile Include="Assets\ScrollActivation.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
