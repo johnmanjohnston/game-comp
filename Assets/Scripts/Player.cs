@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
 
         private CameraShake cameraShake;
 
+        public LineRenderer lr;
+        public GameObject portalCreatedParticles;
+
     private void Start() {
         movement = this.GetComponent<PlayerMovement>();
         gfx = playerSpriteObject.GetComponent<SpriteRenderer>();
@@ -125,12 +128,22 @@ public class Player : MonoBehaviour
 
             cameraShake.Shake(.2f);
 
-            if (hit.collider)
+            lr.positionCount = 2;
+            lr.SetPosition(0, firepoint.transform.position);
+            lr.SetPosition(1, hit.point);
+
+            GameObject particles = Instantiate(portalCreatedParticles, hit.point, Quaternion.identity);
+            particles.transform.localScale = new Vector3(-movement.previousDirection, 1f, 1f);
+            Destroy(particles, 5f);
+
+            // if hit a surface detectable by portals, and it's NOT a door
+            if (hit.collider && hit.collider.gameObject.GetComponentInParent<Door>() == null)
             {
                 // assign hit point, create portal, configure portal position
                 Vector3 hitPoint = hit.point;
                 GameObject portalInstance = Instantiate(portalPrefab);
                 portalInstance.transform.position = hitPoint;
+
 
                 // configure portal gameobject's Portal class variables
                 Portal portal = portalInstance.GetComponent<Portal>();
@@ -162,6 +175,9 @@ public class Player : MonoBehaviour
                     portal.gameObject.tag = "PortalSecondary";
                 }
             }
+
+            yield return new WaitForSeconds(0.1f);
+            lr.positionCount = 0;
         }
 }
 }
