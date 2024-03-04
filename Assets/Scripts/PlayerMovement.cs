@@ -77,6 +77,8 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded) {
             customGravityAmountToAdd += Time.deltaTime;
         } else { customGravityAmountToAdd = 0f; }
+
+        animator.SetBool("isGrounded", isGrounded);
     }
 
     private void HandleJump()
