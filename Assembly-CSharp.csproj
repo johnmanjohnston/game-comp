@@ -70,6 +70,7 @@
     <Compile Include="Assets\ScrollActivation.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\DemoInteractable.cs" />
+    <Compile Include="Assets\ScrollGraphicOscillation.cs" />
     <Compile Include="Assets\Scroll.cs" />
     <Compile Include="Assets\InventoryItemDisplay.cs" />
     <Compile Include="Assets\InventoryItem.cs" />
