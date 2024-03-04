@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\DebugMenu.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
+    <Compile Include="Assets\UnlockCodeButtonSubmission.cs" />
     <Compile Include="Assets\ScrollActivation.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\DemoInteractable.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\UnlockCodeInteractable.cs" />
     <Compile Include="Assets\Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Utility.cs" />
   </ItemGroup>
