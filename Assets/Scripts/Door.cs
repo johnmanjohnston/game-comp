@@ -23,11 +23,13 @@ public class Door : MonoBehaviour {
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (isOpened) CloseDoor();
             else OpenDoor();
         }
+        */
 
         if (isOpened)
         {

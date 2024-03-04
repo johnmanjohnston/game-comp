@@ -4,6 +4,7 @@ using GameComp.Mechanics;
 using GameComp.Core;
 using GameComp.Utilities;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace GameComp.PlayerConfigs {
 public class Player : MonoBehaviour
@@ -60,6 +61,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             ShootPortal(true);
