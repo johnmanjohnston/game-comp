@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 8326240195460344806}
   - component: {fileID: 8614270807036973653}
   - component: {fileID: 762428348367899428}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
