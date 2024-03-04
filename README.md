@@ -2,10 +2,9 @@
 
 # Installation
 This game uses Unity build LTS 2022.3.18f1 (if you use another version, it will most likely not work)
-and uses the URP (universal render pipeline), which allows for 2D lights
 
-Install Unity from their website.
-After installing Unity, open a project, and install the URP from Window -> Package Manager
+Clone this Git repository, and in Unity Hub, open the project folder. 
+The project should then be accessible from the Unity Hub.
 
 <details>
   <summary>To view instructions for programmers, click me.</summary>
