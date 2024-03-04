@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float horizontal { get; private set; }
     public Rigidbody2D rb { get; private set; }
-    private BoxCollider2D col;
+    private CapsuleCollider2D col;
 
     private float customGravityAmountToAdd;
 
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        col = GetComponent<BoxCollider2D>();
+        col = GetComponent<CapsuleCollider2D>();
 
         dashCooldownExpired = true; // allow dashing when game starts
     }
@@ -69,7 +69,13 @@ public class PlayerMovement : MonoBehaviour
         // raycast downwords and check if the collider exists, and the distance is sufficient
         // to mark the player as grounded
         RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, 100f, groundLayer);
-        isGrounded = ray.collider != null && ray.distance <= (col.size.y / 2) + .1f;
+
+        float distanceToAllowGrounded = (col.size.y / 2) + .1f;
+
+        RaycastHit2D leftRay = Physics2D.Raycast(transform.position - new Vector3(.5f, 0), Vector2.down, distanceToAllowGrounded, groundLayer);
+        RaycastHit2D rightRay = Physics2D.Raycast(transform.position + new Vector3(.5f, 0), Vector2.down, distanceToAllowGrounded, groundLayer);
+
+        isGrounded = ray.collider != null && ray.distance <= distanceToAllowGrounded || leftRay.collider != null || rightRay.collider != null;
         distanceToGround = ray.distance;
 
         if (isGrounded) numJumps = 2; // if we're grounded, restore the double-jump ability

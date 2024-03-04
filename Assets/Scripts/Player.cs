@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -77,6 +77,15 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             ShootPortal(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            var portals = FindObjectsOfType<Portal>();
+            for (int i = 0; i < portals.Length; i++)
+            {
+                Destroy(portals[i].gameObject);
+            }
         }
     }
 
@@ -143,6 +152,7 @@ public class Player : MonoBehaviour
                 Vector3 hitPoint = hit.point;
                 GameObject portalInstance = Instantiate(portalPrefab);
                 portalInstance.transform.position = hitPoint;
+                portalInstance.transform.rotation = hit.collider.transform.rotation;
 
 
                 // configure portal gameobject's Portal class variables
