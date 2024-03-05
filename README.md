@@ -3,8 +3,8 @@
 # Installation
 This game uses Unity build LTS 2022.3.18f1 (if you use another version, it will most likely not work)
 
-Clone this Git repository, and in Unity Hub, open the project folder. 
-The project should then be accessible from the Unity Hub.
+**Clone this Git repository, and in Unity Hub, open the project folder. 
+The project should then be accessible from the Unity Hub.**
 
 <details>
   <summary>To view instructions for programmers, click me.</summary>
