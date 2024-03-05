@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 150}
   m_MaxSize: {x: 24288, y: 24288}
   vertical: 0
-  controlID: 20829
+  controlID: 45701
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -45,10 +45,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 308.6667
-    y: 285.33334
-    width: 642.6666
-    height: 170.33333
+    x: 294
+    y: 306
+    width: 616
+    height: 124.33333
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -101,23 +101,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 642.6666
-      height: 149.33333
-    m_Scale: {x: 0.2074074, y: 0.2074074}
-    m_Translation: {x: 321.3333, y: 74.666664}
+      width: 616
+      height: 103.33333
+    m_Scale: {x: 0.14351851, y: 0.14351851}
+    m_Translation: {x: 308, y: 51.666664}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1549.2856
+      x: -2146.0647
       y: -360
-      width: 3098.5713
+      width: 4292.1294
       height: 720
     m_MinimalGUI: 1
-  m_defaultScale: 0.2074074
-  m_LastWindowPixelSize: {x: 963.99994, y: 255.5}
+  m_defaultScale: 0.14351851
+  m_LastWindowPixelSize: {x: 924, y: 186.5}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -142,12 +142,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 953.3333
+    width: 912
     height: 587.3333
   m_MinSize: {x: 200, y: 150}
   m_MaxSize: {x: 16192, y: 24288}
   vertical: 1
-  controlID: 20830
+  controlID: 45702
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,12 +167,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 953.3333
-    height: 404
+    width: 912
+    height: 378.66666
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 0
-  controlID: 20831
+  controlID: 45703
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,8 +190,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 308.66666
-    height: 404
+    width: 294
+    height: 378.66666
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
@@ -221,8 +221,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 72.66667
-    width: 307.66666
-    height: 383
+    width: 293
+    height: 357.66666
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -235,10 +235,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 60}
-      m_SelectedIDs: ee710000
-      m_LastClickedID: 29166
-      m_ExpandedIDs: ea0dffffe4f9ffff50faffff72faffff1afbffff18700000787000005a71000080710000
+      scrollPos: {x: 0, y: 1215.3334}
+      m_SelectedIDs: e0f4f9ff
+      m_LastClickedID: -396064
+      m_ExpandedIDs: fcd7fbff40e3fbffde1efeffea0dffffe4f9ffff50faffff72faffff94faffff00fbffff1afbffffea6f000018700000a2700000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -279,14 +279,14 @@ MonoBehaviour:
   - {fileID: 10}
   m_Position:
     serializedVersion: 2
-    x: 308.66666
+    x: 294
     y: 0
-    width: 644.6666
-    height: 404
+    width: 618
+    height: 378.66666
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 20832
+  controlID: 45704
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -304,8 +304,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 644.6666
-    height: 212.66667
+    width: 618
+    height: 233.33333
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 9}
@@ -333,10 +333,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 308.6667
+    x: 294
     y: 72.66667
-    width: 642.6666
-    height: 191.66667
+    width: 616
+    height: 212.33333
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -686,7 +686,7 @@ MonoBehaviour:
       sizeOverriden: 0
     m_OverlaysVisible: 1
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
@@ -695,9 +695,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1429.1228, y: 853.70135, z: -1.1371939}
+    m_Target: {x: 116.78358, y: -16.102314, z: 0}
     speed: 2
-    m_Value: {x: 1451.2883, y: 837.46906, z: -0.860685}
+    m_Value: {x: 116.78358, y: -16.102312, z: -0.0000000027821874}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -747,9 +747,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 181.26718
+    m_Target: 4.0674314
     speed: 2
-    m_Value: 153.61626
+    m_Value: 4.0674314
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -790,9 +790,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 212.66667
-    width: 644.6666
-    height: 191.33333
+    y: 233.33333
+    width: 618
+    height: 145.33333
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 2}
@@ -854,9 +854,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 404
-    width: 953.3333
-    height: 183.33331
+    y: 378.66666
+    width: 912
+    height: 208.66666
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 13}
@@ -887,9 +887,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 476.6667
-    width: 952.3333
-    height: 162.33331
+    y: 451.33334
+    width: 911
+    height: 187.66666
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -911,7 +911,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/GothicVania Church/Environment
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -919,16 +919,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 60
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/GothicVania Church/Environment
   m_LastFoldersGridSize: 60
   m_LastProjectPath: C:\Users\user\Downloads\game-comp\game-comp
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 5e760000
-    m_LastClickedID: 30302
-    m_ExpandedIDs: 00000000fa75000000ca9a3bffffff7f
+    m_SelectedIDs: b2050200
+    m_LastClickedID: 132530
+    m_ExpandedIDs: 00000000fa7500005676000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -981,8 +981,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: ee710000
-    m_LastClickedInstanceID: 29166
+    m_SelectedInstanceIDs: e0f4f9ff
+    m_LastClickedInstanceID: -396064
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300003a610000146f0000ae740000b6cd0000eccd00002ccd00000e770000587d0000d4a80000689d00001cb50000027500003e750000d0720000
     m_RenameOverlay:
@@ -1148,9 +1148,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 953.3333
+    x: 912
     y: 0
-    width: 326.6667
+    width: 368
     height: 587.3333
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
@@ -1182,9 +1182,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 953.3334
+    x: 912
     y: 72.66667
-    width: 325.6667
+    width: 367
     height: 566.3333
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1203,7 +1203,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 78.66669
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

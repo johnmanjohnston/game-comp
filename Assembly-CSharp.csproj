@@ -84,6 +84,7 @@
     <Compile Include="Assets\UnlockCodeInteractable.cs" />
     <Compile Include="Assets\Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Utility.cs" />
+    <Compile Include="Assets\TopSidePlayerCollisionOnly.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
