@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\LavaPit.cs" />
     <Compile Include="Assets\Scripts\Flier.cs" />
+    <Compile Include="Assets\Artifact.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
     <Compile Include="Assets\FadeOut.cs" />
     <Compile Include="Assets\CameraShake.cs" />

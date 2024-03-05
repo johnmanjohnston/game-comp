@@ -19,7 +19,8 @@ public class FadeOut : MonoBehaviour
         UpdateColor();
 
         if (alpha <= killAmount) {
-            Destroy(this.gameObject);
+            Destroy(this);
+            gameObject.SetActive(false);
         }
     }
 

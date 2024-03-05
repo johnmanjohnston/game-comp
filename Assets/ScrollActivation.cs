@@ -1,4 +1,5 @@
 using GameComp.Interactables;
+using UnityEngine.Events;
 
 public class ScrollActivation : Interactable
 {
@@ -7,6 +8,8 @@ public class ScrollActivation : Interactable
 
     public string scrollText;
     public float lifetime;
+
+    public UnityEvent onView;
 
     private void Start()
     {
@@ -17,6 +20,7 @@ public class ScrollActivation : Interactable
     protected override void OnInteract()
     {
         scroll.ShowScrollText(scrollText, lifetime);
+        onView.Invoke();
 
         if (deactivateAfterViewingScroll)
         {
